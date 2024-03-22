@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 17, 2024 at 11:52 AM
+-- Generation Time: Mar 22, 2024 at 03:00 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,6 +34,44 @@ CREATE TABLE `career` (
   `cdescription` varchar(200) NOT NULL,
   `eligibility` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `counselor`
+--
+
+CREATE TABLE `counselor` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `national_id` varchar(255) NOT NULL,
+  `qualifications` varchar(255) NOT NULL,
+  `contact` varchar(15) NOT NULL,
+  `address` varchar(200) NOT NULL,
+  `nationality` varchar(50) NOT NULL,
+  `next_of_kin` varchar(50) NOT NULL,
+  `relative_contact` varchar(15) NOT NULL,
+  `status` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subject`
+--
+
+CREATE TABLE `subject` (
+  `id` int(11) NOT NULL,
+  `subject` varchar(50) NOT NULL,
+  `status` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `subject`
+--
+
+INSERT INTO `subject` (`id`, `subject`, `status`) VALUES
+(1, 'jkjhngbh', 'Active');
 
 -- --------------------------------------------------------
 
@@ -80,6 +118,18 @@ ALTER TABLE `career`
   ADD PRIMARY KEY (`career_id`);
 
 --
+-- Indexes for table `counselor`
+--
+ALTER TABLE `counselor`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `subject`
+--
+ALTER TABLE `subject`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -94,6 +144,18 @@ ALTER TABLE `users`
 --
 ALTER TABLE `career`
   MODIFY `career_id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `counselor`
+--
+ALTER TABLE `counselor`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `subject`
+--
+ALTER TABLE `subject`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
