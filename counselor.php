@@ -62,7 +62,7 @@ include 'root/process.php';
                                         <div class="row mb-3">
                                             <div class="form-group col">
                                                 <label for="username">Next_of_kin</label>
-                                                <input type="text" class="form-control" name="relative" placeholder="Enter next of kin" required>
+                                                <input type="text" class="form-control" name="next_of_kin" placeholder="Enter next of kin" required>
                                             </div>
                                             <div class="form-group col">
                                                 <label for="username">relative_contact</label>

@@ -24,6 +24,7 @@ include 'root/process.php';
                                 </div>
                                 <div class="modal-body">
                                     <form method="POST" action="">
+                                    <!-- '$car_name','$car_desc','$eligability','$jobs','$opportunities','$recuiters' -->
                                         <div class="form-group col-md-12">
                                             <label for="username">Career Name</label>
                                             <input type="text" class="form-control" name="car_name" placeholder="Enter Career Name" required>
@@ -31,30 +32,30 @@ include 'root/process.php';
                                         <div class="row mb-3">
                                             <div class="form-group  col">
                                                 <label for="phone">Description</label>
-                                                <textarea class="form-control" height="100px" name="car_desc" id="car_desc" rows="2" required>Enter the descrition for Career.</textarea>
+                                                <textarea class="form-control" height="100px" name="car_desc" id="car_desc" rows="2" placeholder="Enter the descrition for Career." required></textarea>
                                               
                                             </div>
                                             <div class="form-group col">
                                                 <label for="phone">Eligability</label>
-                                                <textarea class="form-control" name="eligability" id="eligability" rows="2" required>Enter the Requirements for the career.</textarea>
+                                                <textarea class="form-control" name="eligability" id="eligability" rows="2" placeholder="Enter the Requirements for the career." required></textarea>
                                               
                                             </div>
                                         </div>
                                         <div class="row mb-3">
                                             <div class="form-group col">
                                                 <label for="phone">Types of Jobs</label>
-                                                <textarea class="form-control" name="jobs" id="jobs" rows="2" required>Types of Jobs.</textarea>
+                                                <textarea class="form-control" name="jobs" id="jobs" rows="2" placeholder="Types of Jobs." required></textarea>
                                               
                                             </div>
                                             <div class="form-group col">
                                                 <label for="phone">Employment opportunities</label>
-                                                <textarea class="form-control" name="opportunities" id="employment" rows="2" required>Enter the Employment Opportunities.</textarea>
+                                                <textarea class="form-control" name="opportunities" id="employment" rows="2" placeholder="Enter the Employment Opportunities." required></textarea>
                                               
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="phone">Recruiters</label>
-                                            <textarea class="form-control" name="recuiters" id="recruiters" rows="2" required>Enter Top Recruiters.</textarea>
+                                            <textarea class="form-control" name="recuiters" id="recruiters" rows="2" placeholder="Enter Top Recruiters." required></textarea>
                                           
                                         </div>
                                         <div class="modal-footer justify-content-between">

@@ -194,6 +194,12 @@ if(empty($_SESSION['userid'])){
                         <p>Subjects</p>
                     </a>
                 </li>
+                </li> <li class="nav-item">
+                    <a href="subject" class="nav-link">
+                        <i class="fas fa-circle nav-icon"></i>
+                        <p>Combination</p>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href="student" class="nav-link">
                         <i class="fas fa-circle nav-icon"></i>
@@ -206,6 +212,12 @@ if(empty($_SESSION['userid'])){
                         <p>Career</p>
                     </a>
                 </li>
+                <!-- <li class="nav-item">
+                    <a href="career" class="nav-link">
+                        <i class="fas fa-circle nav-icon"></i>
+                        <p>Chat</p>
+                    </a>
+                </li> -->
                 <li class="nav-item">
                     <a href="logout" class="nav-link" >
                         <i class="fas fa-circle nav-icon"></i>

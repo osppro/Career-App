@@ -78,39 +78,35 @@ if (isset($_POST['loginbtn'])) {
 	        </script>";
 		}
 	}
-}	 elseif (isset($_POST['counselor_btn'])) {
-	extract($_POST);
-
-    // Trim data
-    $name = trim($name);
-    $nationalID = trim($national_id);
-    $qualifications = trim($qualifications);
-    $contact = trim($contact);
-    $address = trim($address);
-    $nationality = trim($nationality);
-    $relative = trim($relative);
-    $relative_contact = trim($relative_contact);
-    $status = trim($status);
-
-	$sql = "INSERT INTO counselor (name, national_id, qualifications, contact, address, nationality, next_of_kin, relative_contact, status) VALUES ('$name', '$nationalID', '$qualifications', '$contact', '$address', '$nationality', '$relative', '$relative_contact', '$status')";
-
-	// Execute SQL query
-	$result = dbCreate($sql);
-
-        // Check if insertion was successful
-        if ($result) {
-            $_SESSION['status'] = '<div class="alert alert-success alert-dismissible">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>Success!</strong> Counselor Uploaded Successfully.
-            </div>';
-            header("refresh:2; url=" . SITE_URL . "/counselor");
-        } else {
-            $_SESSION['status'] = '<div class="alert alert-danger alert-dismissible">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>Failed!</strong> Counselor Upload Failed.
-            </div>';
-        }
+}	elseif (isset($_POST['counselor_btn'])) {
+	trim(extract($_POST));
+	if (count($errors) == 0) {
+		//insert record to mysql table from career form...
+		//`career_id`, `cname`, `croles`, `cdescription`, `eligibility`
+		$check = $dbh->query("SELECT counselor FROM subject WHERE name='$name' ")->fetchColumn();
+		if (!$check) {
+			// $password = sha1($password);
+			$sql = "INSERT INTO counselor VALUES(NULL,'$name','$national_id','$qualifications','$contact','$address','$nationality','$next_of_kin','$relative_contact','$status')";
+			$result = dbCreate($sql);
+			if ($result == 1) {
+				echo "<script>
+	          	alert('counselor is Successful');
+	        	window.location = '" . SITE_URL . "/counselor';
+	          	</script>";
+			} else {
+				echo "<script>
+		      alert('counselor registration failed');
+		   	  window.location = '" . SITE_URL . "/counselor';
+		      </script>";
+			}
+		} else {
+			echo "<script>
+	        alert('counselor already registered');
+	        window.location = '" . SITE_URL . "/counselor';
+	        </script>";
+		}
 	}
+}
 
  elseif (isset($_REQUEST['del-couselor'])) {
 	dbDelete('counselor', 'counselor_id', $_REQUEST['del-couselor']);
