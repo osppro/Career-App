@@ -1,6 +1,5 @@
 <?php include 'header.php';
 include 'root/process.php';
-
 ?>
 
 <div class="content-wrapper">
@@ -22,7 +21,7 @@ include 'root/process.php';
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <!-- counselor_id	name	national_id	qualifications	contact	address	nationality	next_of_kin	relative_contact	status -->
+                                <!--`id`, `name`, `national_id`, `qualifications`, `contact`, `address`, `nationality`, `next_of_kin`, `relative_contact`, `status`-->
                                 <div class="modal-body">
                                     <form method="POST" action="">
 
@@ -103,13 +102,17 @@ include 'root/process.php';
                     <?php $counselor = $dbh->query("SELECT * FROM counselor ");
                     if ($counselor->rowCount() > 0) { ?>
                         <table id="example1" class="table table-bordered table-striped">
-                            <!-- `userid`, `username`, `phone`, `password`, `u_status`, `role`, `date_registered` -->
+                            <!-- id`, `name`, `national_id`, `qualifications`, `contact`, `address`, `nationality`, `next_of_kin`, `relative_contact`, `status` -->
                             <thead>
                                 <tr>
                                     <th>Couselor Name</th>
-                                    <th>Profile Pic</th>
-                                    <th>Documents</th>
+                                    <th>Qualification</th>
+                                    <th>Contact</th>
+                                    <th>Address</th>
                                     <th>Nationality</th>
+                                    <th>Next Of Keen</th>
+                                    <th>Relative Contact</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -117,9 +120,13 @@ include 'root/process.php';
                                 <?php while ($rx = $counselor->fetch(PDO::FETCH_OBJ)) { ?>
                                     <tr>
                                         <td><?= $rx->name ?></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td><?=$rx->qualifications; ?></td>
+                                        <td><?=$rx->contact; ?></td>
+                                        <td><?= $rx->address ?></td>
                                         <td><?= $rx->nationality ?></td>
+                                        <td><?= $rx->next_of_kin ?></td>
+                                        <td><?= $rx->relative_contact ?></td>
+                                        <td><?= $rx->status ?></td>
                                         <td>
                                             <a onclick="return confirm('Do you want to delete this user?');" href="?del-couselor=<?= $rx->counselor_id ?>" class="btn btn-danger">Delete</a>
                                             <button class="btn btn-primary" type="button" class="btn btn-default" data-toggle="modal" data-target="#edit<?= $rx->counselor_id ?>">

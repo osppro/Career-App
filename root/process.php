@@ -82,8 +82,8 @@ if (isset($_POST['loginbtn'])) {
 	trim(extract($_POST));
 	if (count($errors) == 0) {
 		//insert record to mysql table from career form...
-		//`career_id`, `cname`, `croles`, `cdescription`, `eligibility`
-		$check = $dbh->query("SELECT counselor FROM subject WHERE name='$name' ")->fetchColumn();
+		//`id`, `name`, `national_id`, `qualifications`, `contact`, `address`, `nationality`, `next_of_kin`, `relative_contact`, `status`
+		$check = $dbh->query("SELECT contact FROM counselor WHERE contact='$contact' ")->fetchColumn();
 		if (!$check) {
 			// $password = sha1($password);
 			$sql = "INSERT INTO counselor VALUES(NULL,'$name','$national_id','$qualifications','$contact','$address','$nationality','$next_of_kin','$relative_contact','$status')";
