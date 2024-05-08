@@ -7,29 +7,28 @@ $dtime = date("Y-m-d H:i:s A", time());
 $now = date("Y-m-d H:i:s", time());
 $strtime = date("d-m-Y h:i:s A", time());
 $today = date("Y-m-d");
-defined ("APP_DIR") or define("APP_DIR","career-app");
+defined ("APP_DIR") or define("APP_DIR","");
 defined ("DB_URL") or define("DB_URL", $_SERVER['HTTP_HOST']);
 defined ("DS") or define("DS", DIRECTORY_SEPARATOR);
 defined ("BASE_URL") or define("BASE_URL", $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['SERVER_NAME']);
 switch(DB_URL){
 	case 'localhost':
-		defined ("DB_SERVER") or define("DB_SERVER", 'localhost');
+		defined ("DB_SERVER") or define("DB_SERVER", "localhost");
 		defined ("DB_USER") or define("DB_USER", "root");
 		defined ("DB_PASS") or define("DB_PASS", "");
 		defined ("DB_NAME") or define("DB_NAME", "career_app");
-		// defined ("SITE_URL") or define("SITE_URL", BASE_URL.'/'.APP_DIR.'/');
-		// defined ("HOME_URL") or define("HOME_URL", BASE_URL.'/'.APP_DIR.'/dash');
 		defined ("SITE_URL") or define("SITE_URL", 'http://localhost/career-app');
 		defined ("HOME_URL") or define("HOME_URL", 'http://localhost/career-app/dash');
 	break;
 	case 'production': 
-		defined ("DB_SERVER") or define("DB_SERVER", 'localhost');
-		defined ("DB_USER") or define("DB_USER", "kheenorg_admin");
-		defined ("DB_PASS") or define("DB_PASS", "Admin@2021#");
-		defined ("DB_NAME") or define("DB_NAME", "kheenorg_info");
-		defined ("SITE_URL") or define("SITE_URL", "http://kheenorganics.com");
+		defined ("DB_SERVER") or define("DB_SERVER", "");
+		defined ("DB_USER") or define("DB_USER", "");
+		defined ("DB_PASS") or define("DB_PASS", "");
+		defined ("DB_NAME") or define("DB_NAME", "");
+		defined ("SITE_URL") or define("SITE_URL", "");
+	break; 
 	default: 
-		defined ("DB_SERVER") or define("DB_SERVER", 'localhost');
+		defined ("DB_SERVER") or define("DB_SERVER", "localhost");
 		defined ("DB_USER") or define("DB_USER", "root");
 		defined ("DB_PASS") or define("DB_PASS", "");
 		defined ("DB_NAME") or define("DB_NAME", "career_app");
@@ -38,14 +37,9 @@ switch(DB_URL){
 }
 
  try{
- 	// $dbcon = mysqli_connect(DB_SERVER,DB_USER,DB_PASS,DB_NAME); 
-	// $con = new mysqli(DB_SERVER,DB_USER,DB_PASS,DB_NAME);
 	$dbh = new PDO("mysql:host=".DB_SERVER.";dbname=".DB_NAME, DB_USER, DB_PASS, array(PDO::ATTR_PERSISTENT => true)); 
 	$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
-
-	}
-catch(PDOException $e) 
-{
+}catch(PDOException $e) {
 	echo $e->getMessage(); 
 }
 
@@ -69,8 +63,7 @@ function log_message($msg=NULL){
 	}
 }
 
-function Batch($numAlpha=8,$numNonAlpha=2)
-{
+function Batch($numAlpha=8,$numNonAlpha=2){
    $listAlpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
    return str_shuffle(
       substr(str_shuffle($listAlpha),0,$numAlpha)
@@ -148,8 +141,7 @@ function calcDays($start, $end){
 
 }
 
-function dbDelete ($tbl='',$field='',$id='')
-{
+function dbDelete ($tbl='',$field='',$id=''){
 	global $dbh;
 	if($tbl!='' && $field!='' && $id!=''){
 		$sql = 'DELETE FROM '.$tbl.' WHERE '.$field.' = '.$id. '';
@@ -159,9 +151,7 @@ function dbDelete ($tbl='',$field='',$id='')
 	}
 }
 
-function dbCreate($sql='')
-
-{
+function dbCreate($sql=''){
 	global $dbh;
 
 	if($sql ==''){
@@ -173,8 +163,7 @@ function dbCreate($sql='')
 	}
 }
 
-function dbSQL($q='')
-{
+function dbSQL($q=''){
 	global $dbh;
 	if(empty($q)) return FALSE;
 	$r = $dbh->prepare($q);
@@ -187,16 +176,14 @@ function dbSQL($q='')
 
 }
 
-function dbRow($query='')
-{
+function dbRow($query=''){
 	global $dbh;
 	$r = $dbh->prepare($query);
 	$r->execute();
 	return $r->fetch(PDO::FETCH_OBJ);
 }
 
-function dbOne($query='', $field='')
-{
+function dbOne($query='', $field=''){
 	global $dbh;
 	$r = dbRow($query);
 	return $r? $r->$field:NULL;
@@ -301,41 +288,26 @@ function convert_number_to_words($number) {
     }
 
     if (($number >= 0 && (int) $number < 0) || (int) $number < 0 - PHP_INT_MAX) {
-
         // overflow
-
         trigger_error(
-
             'convert_number_to_words only accepts numbers between -' . PHP_INT_MAX . ' and ' . PHP_INT_MAX,
-
             E_USER_WARNING
-
         );
-
         return false;
-
     }
 
     if ($number < 0) {
-
         return $negative . convert_number_to_words(abs($number));
-
     }
 
     $string = $fraction = null;
-
     if (strpos($number, '.') !== false) {
-
         list($number, $fraction) = explode('.', $number);
-
     }
 
     switch (true) {
-
         case $number < 21:
-
-            $string = $dictionary[$number];
-
+           $string = $dictionary[$number];
             break;
 
         case $number < 100:
@@ -403,261 +375,67 @@ function convert_number_to_words($number) {
     return $string;
 }
 
-$countries = array
-(
-	'AF' => 'Afghanistan',
-	'AX' => 'Aland Islands',
-	'AL' => 'Albania',
-	'DZ' => 'Algeria',
-	'AS' => 'American Samoa',
-	'AD' => 'Andorra',
-	'AO' => 'Angola',
-	'AI' => 'Anguilla',
-	'AQ' => 'Antarctica',
-	'AG' => 'Antigua And Barbuda',
-	'AR' => 'Argentina',
-	'AM' => 'Armenia',
-	'AW' => 'Aruba',
-	'AU' => 'Australia',
-	'AT' => 'Austria',
-	'AZ' => 'Azerbaijan',
-	'BS' => 'Bahamas',
-	'BH' => 'Bahrain',
-	'BD' => 'Bangladesh',
-	'BB' => 'Barbados',
-	'BY' => 'Belarus',
-	'BE' => 'Belgium',
-	'BZ' => 'Belize',
-	'BJ' => 'Benin',
-	'BM' => 'Bermuda',
-	'BT' => 'Bhutan',
-	'BO' => 'Bolivia',
-	'BA' => 'Bosnia And Herzegovina',
-	'BW' => 'Botswana',
-	'BV' => 'Bouvet Island',
-	'BR' => 'Brazil',
-	'IO' => 'British Indian Ocean Territory',
-	'BN' => 'Brunei Darussalam',
-	'BG' => 'Bulgaria',
-	'BF' => 'Burkina Faso',
-	'BI' => 'Burundi',
-	'KH' => 'Cambodia',
-	'CM' => 'Cameroon',
-	'CA' => 'Canada',
-	'CV' => 'Cape Verde',
-	'KY' => 'Cayman Islands',
-	'CF' => 'Central African Republic',
-	'TD' => 'Chad',
-	'CL' => 'Chile',
-	'CN' => 'China',
-	'CX' => 'Christmas Island',
-	'CC' => 'Cocos (Keeling) Islands',
-	'CO' => 'Colombia',
-	'KM' => 'Comoros',
-	'CG' => 'Congo',
-	'CD' => 'Congo, Democratic Republic',
-	'CK' => 'Cook Islands',
-	'CR' => 'Costa Rica',
-	'CI' => 'Cote D\'Ivoire',
-	'HR' => 'Croatia',
-	'CU' => 'Cuba',
-	'CY' => 'Cyprus',
-	'CZ' => 'Czech Republic',
-	'DK' => 'Denmark',
-	'DJ' => 'Djibouti',
-	'DM' => 'Dominica',
-	'DO' => 'Dominican Republic',
-	'EC' => 'Ecuador',
-	'EG' => 'Egypt',
-	'SV' => 'El Salvador',
-	'GQ' => 'Equatorial Guinea',
-	'ER' => 'Eritrea',
-	'EE' => 'Estonia',
-	'ET' => 'Ethiopia',
-	'FK' => 'Falkland Islands (Malvinas)',
-	'FO' => 'Faroe Islands',
-	'FJ' => 'Fiji',
-	'FI' => 'Finland',
-	'FR' => 'France',
-	'GF' => 'French Guiana',
-	'PF' => 'French Polynesia',
-	'TF' => 'French Southern Territories',
-	'GA' => 'Gabon',
-	'GM' => 'Gambia',
-	'GE' => 'Georgia',
-	'DE' => 'Germany',
-	'GH' => 'Ghana',
-	'GI' => 'Gibraltar',
-	'GR' => 'Greece',
-	'GL' => 'Greenland',
-	'GD' => 'Grenada',
-	'GP' => 'Guadeloupe',
-	'GU' => 'Guam',
-	'GT' => 'Guatemala',
-	'GG' => 'Guernsey',
-	'GN' => 'Guinea',
-	'GW' => 'Guinea-Bissau',
-	'GY' => 'Guyana',
-	'HT' => 'Haiti',
-	'HM' => 'Heard Island & Mcdonald Islands',
-	'VA' => 'Holy See (Vatican City State)',
-	'HN' => 'Honduras',
-	'HK' => 'Hong Kong',
-	'HU' => 'Hungary',
-	'IS' => 'Iceland',
-	'IN' => 'India',
-	'ID' => 'Indonesia',
-	'IR' => 'Iran, Islamic Republic Of',
-	'IQ' => 'Iraq',
-	'IE' => 'Ireland',
-	'IM' => 'Isle Of Man',
-	'IL' => 'Israel',
-	'IT' => 'Italy',
-	'JM' => 'Jamaica',
-	'JP' => 'Japan',
-	'JE' => 'Jersey',
-	'JO' => 'Jordan',
-	'KZ' => 'Kazakhstan',
-	'KE' => 'Kenya',
-	'KI' => 'Kiribati',
-	'KR' => 'Korea',
-	'KW' => 'Kuwait',
-	'KG' => 'Kyrgyzstan',
-	'LA' => 'Lao People\'s Democratic Republic',
-	'LV' => 'Latvia',
-	'LB' => 'Lebanon',
-	'LS' => 'Lesotho',
-	'LR' => 'Liberia',
-	'LY' => 'Libyan Arab Jamahiriya',
-	'LI' => 'Liechtenstein',
-	'LT' => 'Lithuania',
-	'LU' => 'Luxembourg',
-	'MO' => 'Macao',
-	'MK' => 'Macedonia',
-	'MG' => 'Madagascar',
-	'MW' => 'Malawi',
-	'MY' => 'Malaysia',
-	'MV' => 'Maldives',
-	'ML' => 'Mali',
-	'MT' => 'Malta',
-	'MH' => 'Marshall Islands',
-	'MQ' => 'Martinique',
-	'MR' => 'Mauritania',
-	'MU' => 'Mauritius',
-	'YT' => 'Mayotte',
-	'MX' => 'Mexico',
-	'FM' => 'Micronesia, Federated States Of',
-	'MD' => 'Moldova',
-	'MC' => 'Monaco',
-	'MN' => 'Mongolia',
-	'ME' => 'Montenegro',
-	'MS' => 'Montserrat',
-	'MA' => 'Morocco',
-	'MZ' => 'Mozambique',
-	'MM' => 'Myanmar',
-	'NA' => 'Namibia',
-	'NR' => 'Nauru',
-	'NP' => 'Nepal',
-	'NL' => 'Netherlands',
-	'AN' => 'Netherlands Antilles',
-	'NC' => 'New Caledonia',
-	'NZ' => 'New Zealand',
-	'NI' => 'Nicaragua',
-	'NE' => 'Niger',
-	'NG' => 'Nigeria',
-	'NU' => 'Niue',
-	'NF' => 'Norfolk Island',
-	'MP' => 'Northern Mariana Islands',
-	'NO' => 'Norway',
-	'OM' => 'Oman',
-	'PK' => 'Pakistan',
-	'PW' => 'Palau',
-	'PS' => 'Palestinian Territory, Occupied',
-	'PA' => 'Panama',
-	'PG' => 'Papua New Guinea',
-	'PY' => 'Paraguay',
-	'PE' => 'Peru',
-	'PH' => 'Philippines',
-	'PN' => 'Pitcairn',
-	'PL' => 'Poland',
-	'PT' => 'Portugal',
-	'PR' => 'Puerto Rico',
-	'QA' => 'Qatar',
-	'RE' => 'Reunion',
-	'RO' => 'Romania',
-	'RU' => 'Russian Federation',
-	'RW' => 'Rwanda',
-	'BL' => 'Saint Barthelemy',
-	'SH' => 'Saint Helena',
-	'KN' => 'Saint Kitts And Nevis',
-	'LC' => 'Saint Lucia',
-	'MF' => 'Saint Martin',
-	'PM' => 'Saint Pierre And Miquelon',
-	'VC' => 'Saint Vincent And Grenadines',
-	'WS' => 'Samoa',
-	'SM' => 'San Marino',
-	'ST' => 'Sao Tome And Principe',
-	'SA' => 'Saudi Arabia',
-	'SN' => 'Senegal',
-	'RS' => 'Serbia',
-	'SC' => 'Seychelles',
-	'SL' => 'Sierra Leone',
-	'SG' => 'Singapore',
-	'SK' => 'Slovakia',
-	'SI' => 'Slovenia',
-	'SB' => 'Solomon Islands',
-	'SO' => 'Somalia',
-	'ZA' => 'South Africa',
-	'GS' => 'South Georgia And Sandwich Isl.',
-	'ES' => 'Spain',
-	'LK' => 'Sri Lanka',
-	'SD' => 'Sudan',
-	'SR' => 'Suriname',
-	'SJ' => 'Svalbard And Jan Mayen',
-	'SZ' => 'Swaziland',
-	'SE' => 'Sweden',
-	'CH' => 'Switzerland',
-	'SY' => 'Syrian Arab Republic',
-	'TW' => 'Taiwan',
-	'TJ' => 'Tajikistan',
-	'TZ' => 'Tanzania',
-	'TH' => 'Thailand',
-	'TL' => 'Timor-Leste',
-	'TG' => 'Togo',
-	'TK' => 'Tokelau',
-	'TO' => 'Tonga',
-	'TT' => 'Trinidad And Tobago',
-	'TN' => 'Tunisia',
-	'TR' => 'Turkey',
-	'TM' => 'Turkmenistan',
-	'TC' => 'Turks And Caicos Islands',
-	'TV' => 'Tuvalu',
-	'UG' => 'Uganda',
-	'UA' => 'Ukraine',
-	'AE' => 'United Arab Emirates',
-	'GB' => 'United Kingdom',
-	'US' => 'United States',
-	'UM' => 'United States Outlying Islands',
-	'UY' => 'Uruguay',
-	'UZ' => 'Uzbekistan',
-	'VU' => 'Vanuatu',
-	'VE' => 'Venezuela',
-	'VN' => 'Viet Nam',
-	'VG' => 'Virgin Islands, British',
-	'VI' => 'Virgin Islands, U.S.',
-	'WF' => 'Wallis And Futuna',
-	'EH' => 'Western Sahara',
-	'YE' => 'Yemen',
-	'ZM' => 'Zambia',
-	'ZW' => 'Zimbabwe',
-);
-
-function get_countries($countries){
-	$arr = array();
-	foreach($countries as $k => $value){
-		array_push($arr, $value);
-	}
-	return $arr;
+function career_api($api_msg){
+	$curl = curl_init();
+	curl_setopt_array($curl, array(
+	  CURLOPT_URL => 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyC5tK0UZMRkrpD-gvwg0BMi_xg5ljRoeMg',
+	  CURLOPT_RETURNTRANSFER => true,
+	  CURLOPT_ENCODING => '',
+	  CURLOPT_MAXREDIRS => 10,
+	  CURLOPT_TIMEOUT => 0,
+	  CURLOPT_FOLLOWLOCATION => true,
+	  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+	  CURLOPT_CUSTOMREQUEST => 'POST',
+	  CURLOPT_POSTFIELDS =>'{
+	    "contents"
+	    :[
+	        {
+	            "parts":[
+	                {
+	                    "text":"'.$api_msg.'"
+	                }
+	            ]
+	        }
+	    ]
+	}',
+	  CURLOPT_HTTPHEADER => array(
+	    'Content-Type: application/json'
+	  ),
+	));
+	$response = curl_exec($curl);
+	curl_close($curl);
+	return $response;
 }
+
+function send_sms_yoola_api($phone, $message){
+	$arr = array(
+	"api_key" => "your api key goes here",
+    "phone" => $phone,
+    "message" => $message
+	);
+	
+	$curl = curl_init();
+	curl_setopt_array($curl, array(
+	  CURLOPT_URL => 'https://yoolasms.com/api/v1/send',
+	  CURLOPT_RETURNTRANSFER => true,
+	  CURLOPT_ENCODING => '',
+	  CURLOPT_MAXREDIRS => 10,
+	  CURLOPT_TIMEOUT => 0,
+	  CURLOPT_FOLLOWLOCATION => true,
+	  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+	  CURLOPT_CUSTOMREQUEST => 'POST',
+	  CURLOPT_POSTFIELDS => json_encode($arr),
+	  CURLOPT_HTTPHEADER => array(
+	    'Content-Type: application/json',
+	    'Cookie: PHPSESSID=98ee89b975fbb39aafef5960529f53e2'
+	  ),
+	));
+
+	$response = curl_exec($curl);
+	
+	curl_close($curl);
+	return $response;
+}
+
 
 ?>

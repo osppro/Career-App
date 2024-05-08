@@ -69,7 +69,7 @@ if(empty($_SESSION['userid'])){
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="index" class="nav-link">Home</a>
+            <a href="<?=SITE_URL; ?>" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
             <a href="#" class="nav-link">Contact</a>
@@ -140,13 +140,11 @@ if(empty($_SESSION['userid'])){
     </ul>
 </nav>
 
-
 <!-- end of token narv -->
 
-
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <a href="index" class="brand-link">
-        <img src="assets/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <a href="<?=SITE_URL; ?>" class="brand-link">
+        <img src="assets/img/AdminLTELogo.png" alt="Career App" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Career App</span>
     </a>
 
@@ -156,7 +154,7 @@ if(empty($_SESSION['userid'])){
                 <img src="assets/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="#" class="d-block"><?=$_SESSION['fullname']; ?></a>
             </div>
         </div>
 
@@ -174,14 +172,12 @@ if(empty($_SESSION['userid'])){
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item menu-open">
-                    <a href="index" class="nav-link active">
+                    <a href="<?=SITE_URL; ?>" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
-                            
                         </p>
                     </a>
-                 
                 
                 <li class="nav-item">
                     <a href="counselor" class="nav-link">

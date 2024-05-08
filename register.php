@@ -1,4 +1,6 @@
-<?php include('root/process.php'); ?>
+<?php 
+include('root/process.php'); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,12 +25,14 @@
 </head>
 <body class="hold-transition register-page">
     <div class="register-box">
-        <div class="card card-outline card-primary">
+        <div class="card card-outline card-danger">
             <div class="card-header text-center">
-                <a href="" class="h1"><b>Carrer</b>App</a>
+               <a href="<?=SITE_URL; ?>">
+                    <img src="uploads/logo.jpg" style="width: 100px;">
+                </a>
             </div>
             <div class="card-body">
-                <p class="login-box-msg">Register a new membership</p>
+                <p class="login-box-msg">Register as new membership</p>
                 <form action="" method="post">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Full name" name="username" required>
@@ -73,13 +77,13 @@
                     <!-- End of new fields -->
                     <div class="row">
                         <div class="col-8">
-                            <!-- <div class="icheck-primary">
+                            <div class="icheck-danger">
                                 <input type="checkbox" id="agreeTerms" name="terms" value="agree">
                                 <label for="agreeTerms">I agree to the <a href="#">terms</a></label>
-                            </div> -->
+                            </div>
                         </div>
                         <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block" name="register">Register</button>
+                            <button type="submit" class="btn btn-danger btn-block" name="register">Register</button>
                         </div>
                     </div>
                 </form>
