@@ -75,44 +75,23 @@ if(empty($_SESSION['userid'])){
             <a href="#" class="nav-link">Contact</a>
         </li>
     </ul>
-
-    <!-- Navbar Right Side -->
-    <ul class="navbar-nav ml-auto">
-        <!-- Comments Dropdown -->
-        <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="far fa-comments"></i>
-                <span class="badge badge-danger navbar-badge">0</span>
-            </a>
-            <!-- Comments Dropdown Content -->
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <!-- ... Dropdown content ... -->
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
-        </li>
-    </ul>
 </nav>
 
 <!-- end of token narv -->
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="<?=SITE_URL; ?>" class="brand-link">
-        <img src="assets/img/AdminLTELogo.png" alt="Career App" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="uploads/logo.jpg" alt="Career App" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Career App</span>
     </a>
 
     <div class="sidebar">
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="assets/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                <img src="uploads/logo.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block"><?=$_SESSION['fullname']; ?></a>
+                <a href="<?=SITE_URL; ?>" class="d-block"><?=$_SESSION['fullname']; ?></a>
             </div>
         </div>
 
@@ -130,9 +109,9 @@ if(empty($_SESSION['userid'])){
                         <p>Counselor</p>
                     </a>
                 </li> <li class="nav-item">
-                    <a href="subject" class="nav-link">
+                    <a href="career-categories" class="nav-link">
                         <i class="fas fa-circle nav-icon"></i>
-                        <p>Subjects</p>
+                        <p>Career Categories</p>
                     </a>
                 </li>
                 </li> <li class="nav-item">

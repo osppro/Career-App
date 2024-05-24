@@ -239,4 +239,25 @@ if (isset($_POST['loginbtn'])) {
 			</script>";
 	}
 	}
+}elseif (isset($_POST['save_category_btn'])) {
+	trim(extract($_POST));
+	$check = $dbh->query("SELECT cat_name FROM career_category WHERE cat_name='$cat_name' ")->fetchColumn();
+	if (!$check) {
+		$sql = "INSERT INTO career_category VALUES(NULL, '$cat_name' )";
+		$result = dbCreate($sql);
+		if ($result == 1) {
+			$_SESSION['status'] = '<div class="alert alert-success text-center">New Career added Successfully</duv>';
+			header("refresh:2; url=".SITE_URL.'/career-categories');
+		} else {
+			echo "<script>
+	      alert('User registration failed');
+	   	  window.location = '" . SITE_URL . "/career-categories';
+	      </script>";
+		}
+	} else {
+		echo "<script>
+        alert('Username already registered');
+        window.location = '" . SITE_URL . "/career-categories';
+        </script>";
+	}
 }

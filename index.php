@@ -9,8 +9,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Dashboard v1</li>
+                        <li class="breadcrumb-item"><a href="<?=SITE_URL; ?>">Home</a></li>
+                        <li class="breadcrumb-item active">Dashboard</li>
                     </ol>
                 </div>
             </div>
@@ -45,6 +45,20 @@
                             <i class="ion ion-stats-bars"></i>
                         </div>
                         <a href="counselor" class="small-box-footer">View All <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-dark">
+                        <div class="inner">
+                            <?php $totalcrs = $dbh->query("SELECT * FROM users WHERE role ='Career' "); ?>
+                            <h3><?=number_format($totalcrs->rowCount());?></h3>
+                            <p>Career Categories</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-person-add"></i>
+                        </div>
+                        <a href="career" class="small-box-footer">List All<i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
 
