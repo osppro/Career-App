@@ -5,20 +5,13 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header">
-                
-
-                
-
-
                 <div class="col-md-12">
                     <div class="card card-primary card-outline">
-                       
                         <div class="card-body">
                             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
                                 Add User
                             </button>
                         </div>
-
                         <div class="modal fade" id="modal-default">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -60,7 +53,7 @@
                 </div>
             </div>
         </div>
-    
+
                 <div class="card-body">
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
@@ -119,8 +112,6 @@
         });
     });
 
-
-
     // Your JavaScript code goes here
     $(function () {
         // Code for Toast and Toastr initialization
@@ -130,7 +121,6 @@
             showConfirmButton: false,
             timer: 3000
         });
-
         // Event handlers for different actions
         $('.swalDefaultSuccess').click(function () {
             Toast.fire({
@@ -138,46 +128,38 @@
                 title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
             });
         });
-
         $('.swalDefaultInfo').click(function () {
             Toast.fire({
                 icon: 'info',
                 title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
             });
         });
-
         $('.swalDefaultError').click(function () {
             Toast.fire({
                 icon: 'error',
                 title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
             });
         });
-
         $('.swalDefaultWarning').click(function () {
             Toast.fire({
                 icon: 'warning',
                 title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
             });
         });
-
         $('.swalDefaultQuestion').click(function () {
             Toast.fire({
                 icon: 'question',
                 title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
             });
         });
-
         $('.toastrDefaultSuccess').click(function () {
             toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.');
         });
-
         $('.toastrDefaultInfo').click(function () {
             toastr.info('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.');
         });
-
         // Repeat similar patterns for other actions
     });
-
 </script>
 
 

@@ -1,15 +1,18 @@
 <?php 
-include 'root/config.php';
+include 'root/process.php';
 
 //check if no user lggedin successfully
 if(empty($_SESSION['userid'])){
     header("Location: ".SITE_URL.'/login');
 }else{
-    //`userid`, `username`, `phone`, `password`, `u_status`, `role`, `date_registered`
+    //`userid`, `fullname`, `phone`, `email`, `password`, `account_status`, `education_status`, `role`, `date_registered`, `token`
     $userid = $_SESSION['userid'];
-    $username = $_SESSION['username'];
+    $fullname = $_SESSION['fullname'];
     $phone = $_SESSION['phone'];
-    $u_status = $_SESSION['u_status'];
+    $email = $_SESSION['email'];
+    $account_status = $_SESSION['account_status'];
+    $education_status = $_SESSION['education_status'];
+    $date_registered = $_SESSION['date_registered'];
     $role = $_SESSION['role'];
 
      //delete users
@@ -19,15 +22,12 @@ if(empty($_SESSION['userid'])){
             header("Location: ?users");
         }
  
- 
      }elseif(isset($_REQUEST['del-career'])) {
         $x = dbDelete ('career',$_REQUEST['del-career'],'career_id');
         if ($x==1) {
-            header("Location: ?career");
-        
-     }
+            header("Location: ?career"); 
+        }
     }
-
 }
 
 ?>
@@ -78,64 +78,22 @@ if(empty($_SESSION['userid'])){
 
     <!-- Navbar Right Side -->
     <ul class="navbar-nav ml-auto">
-        <!-- Search Box -->
-        <li class="nav-item">
-            <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                <i class="fas fa-search"></i>
-            </a>
-            <div class="navbar-search-block">
-                <form class="form-inline">
-                    <div class="input-group input-group-sm">
-                        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-navbar" type="submit">
-                                <i class="fas fa-search"></i>
-                            </button>
-                            <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </li>
-
         <!-- Comments Dropdown -->
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="far fa-comments"></i>
-                <span class="badge badge-danger navbar-badge">3</span>
+                <span class="badge badge-danger navbar-badge">0</span>
             </a>
             <!-- Comments Dropdown Content -->
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <!-- ... Dropdown content ... -->
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </div>
-        </li>
-
-        <!-- Notifications Dropdown -->
-        <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="far fa-bell"></i>
-                <span class="badge badge-warning navbar-badge">15</span>
-            </a>
-            <!-- Notifications Dropdown Content -->
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <!-- ... Dropdown content ... -->
-            </div>
-        </li>
-
-        <!-- Fullscreen Button -->
-        <li class="nav-item">
-            <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                <i class="fas fa-expand-arrows-alt"></i>
-            </a>
-        </li>
-
-        <!-- Control Sidebar Button -->
-        <li class="nav-item">
-            <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#" role="button">
-                <i class="fas fa-th-large"></i>
-            </a>
         </li>
     </ul>
 </nav>
@@ -158,27 +116,14 @@ if(empty($_SESSION['userid'])){
             </div>
         </div>
 
-        <div class="form-inline">
-            <div class="input-group" data-widget="sidebar-search">
-                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-                <div class="input-group-append">
-                    <button class="btn btn-sidebar">
-                        <i class="fas fa-search fa-fw"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item menu-open">
                     <a href="<?=SITE_URL; ?>" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                        </p>
+                        <p>Dashboard</p>
                     </a>
-                
+            <?php if ($role == 'admin') {?>
                 <li class="nav-item">
                     <a href="counselor" class="nav-link">
                         <i class="fas fa-circle nav-icon"></i>
@@ -203,17 +148,22 @@ if(empty($_SESSION['userid'])){
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="career" class="nav-link">
+                    <a href="careers" class="nav-link">
                         <i class="fas fa-circle nav-icon"></i>
-                        <p>Career</p>
+                        <p>Careers</p>
                     </a>
                 </li>
-                <!-- <li class="nav-item">
+                <li class="nav-item">
                     <a href="career" class="nav-link">
                         <i class="fas fa-circle nav-icon"></i>
                         <p>Chat</p>
                     </a>
-                </li> -->
+                </li>
+                <?php }elseif ($role == 'counselor') { ?>
+                    
+                <?php }else{ ?>
+
+                <?php } ?>
                 <li class="nav-item">
                     <a href="logout" class="nav-link" >
                         <i class="fas fa-circle nav-icon"></i>

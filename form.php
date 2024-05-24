@@ -63,15 +63,11 @@
         </div>
     </section>
 </div>
-
 <?php include 'footer.php'?>
-
 <aside class="control-sidebar control-sidebar-dark">
     <!-- Content for control sidebar goes here -->
 </aside>
-
 </div>
-
 <script>
     $(function () {
         bsCustomFileInput.init();

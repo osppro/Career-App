@@ -15,11 +15,12 @@ if (isset($_POST['loginbtn'])) {
 		$result1 = $dbh->query("SELECT * FROM users WHERE phone = '$phone' AND password = '$password' AND role = 'student' ");
 		if ($result->rowCount() == 1) {
 			$row = $result->fetch(PDO::FETCH_OBJ);
-			//`userid`, `fullname`, `phone`, `email`, `password`, `u_status`, `education_status`, `role`, `date_registered`
+			//`userid`, `fullname`, `phone`, `email`, `password`, `account_status`, `education_status`, `role`, `date_registered`, `token`
 			$_SESSION['userid'] = $row->userid;
 			$_SESSION['fullname'] = $row->fullname;
+			$_SESSION['phone'] = $row->phone;
 			$_SESSION['email'] = $row->email;
-			$_SESSION['u_status'] = $row->u_status;
+			$_SESSION['account_status'] = $row->account_status;
 			$_SESSION['education_status'] = $row->education_status;
 			$_SESSION['role'] = $row->role;
 			$_SESSION['date_registered'] = $row->date_registered;
@@ -63,7 +64,7 @@ if (isset($_POST['loginbtn'])) {
 	        </script>";
 		}
 	}
-}	elseif (isset($_POST['counselor_btn'])) {
+}elseif (isset($_POST['counselor_btn'])) {
 	trim(extract($_POST));
 	if (count($errors) == 0) {
 		//insert record to mysql table from career form...
@@ -132,8 +133,7 @@ if (isset($_POST['loginbtn'])) {
 	if ($sql) {
 		$_SESSION['status'] = '<div id="note1" class="alert alert-warning text-center single-item__time single-item__time--live">Career updated Successfully!</div>';
 	}
-}
-elseif (isset($_POST['subject_btn'])) {
+}elseif (isset($_POST['subject_btn'])) {
 	trim(extract($_POST));
 	if (count($errors) == 0) {
 		//insert record to mysql table from career form...
@@ -210,11 +210,12 @@ elseif (isset($_POST['subject_btn'])) {
 		$result = $dbh->query("SELECT * FROM users WHERE token = '$otp' " );
 		if ($result->rowCount() == 1) {
 		$row = $result->fetch(PDO::FETCH_OBJ);
-		//`userid`, `token`, `surname`, `othername`, `gender`, `phone`, `email`, `password`, `country_id`, `branch_id`, `address`, `nin_number`, `date_registered`, `account_status`
+		//`userid`, `fullname`, `phone`, `email`, `password`, `account_status`, `education_status`, `role`, `date_registered`, `token`
 		$_SESSION['userid'] = $row->userid;
 		$_SESSION['fullname'] = $row->fullname;
+		$_SESSION['phone'] = $row->phone;
 		$_SESSION['email'] = $row->email;
-		$_SESSION['u_status'] = $row->u_status;
+		$_SESSION['account_status'] = $row->account_status;
 		$_SESSION['education_status'] = $row->education_status;
 		$_SESSION['role'] = $row->role;
 		$_SESSION['date_registered'] = $row->date_registered;
@@ -227,7 +228,7 @@ elseif (isset($_POST['subject_btn'])) {
 				$_SESSION['status'] = '<div class="card card-body alert alert-warning text-center">
 				Login failed, please check your login details again</div>';
 			}
-
+			
 	}else{
 		$_SESSION['status'] = '<div class="card card-body alert alert-danger text-center">
 				<strong>Wrong Token inserted</strong></div>';
@@ -238,5 +239,4 @@ elseif (isset($_POST['subject_btn'])) {
 			</script>";
 	}
 	}
-
 }

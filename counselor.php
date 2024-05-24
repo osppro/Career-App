@@ -1,6 +1,4 @@
-<?php include 'header.php';
-include 'root/process.php';
-?>
+<?php include 'header.php';?>
 
 <div class="content-wrapper">
     <section class="content-header">

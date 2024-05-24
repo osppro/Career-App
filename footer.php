@@ -2,15 +2,12 @@
     <strong>Copyright &copy; 2014 - <?=date('Y'); ?> <a href="">....</a>.</strong>
     All rights reserved.
 </footer>
-
 <aside class="control-sidebar control-sidebar-dark">
     <!-- Content for control sidebar goes here -->
 </aside>
 </div>
-
     <script src="plugins/jquery/jquery.min.js"></script>
     <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
-
     <script>
         $.widget.bridge('uibutton', $.ui.button);
     </script>
