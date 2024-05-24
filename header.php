@@ -1,6 +1,5 @@
 <?php 
 include 'root/process.php';
-
 //check if no user lggedin successfully
 if(empty($_SESSION['userid'])){
     header("Location: ".SITE_URL.'/login');
@@ -38,30 +37,25 @@ if(empty($_SESSION['userid'])){
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Career App</title>
     <link rel="icon" type="image/x-icon" href="assets/img/avatar.png">
-
     <!-- External CSS Stylesheets -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-<link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-<link rel="stylesheet" href="code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-<link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-<link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-<link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
-<link rel="stylesheet" href="assets/css/adminlte.min2167.css?v=3.2.0">
-<link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-<link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
-<link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
-<link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
-<link rel="stylesheet" href="plugins/toastr/toastr.min.css">
-<link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-<link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-
-
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+    <link rel="stylesheet" href="assets/css/adminlte.min2167.css?v=3.2.0">
+    <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+    <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
-
 <div class="wrapper">
-
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Navbar Left Side -->
     <ul class="navbar-nav">
@@ -76,15 +70,12 @@ if(empty($_SESSION['userid'])){
         </li>
     </ul>
 </nav>
-
 <!-- end of token narv -->
-
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="<?=SITE_URL; ?>" class="brand-link">
         <img src="uploads/logo.jpg" alt="Career App" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Career App</span>
     </a>
-
     <div class="sidebar">
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
